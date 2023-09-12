@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author fonseca
- *
- */
-module JogoPalavrasEmbaralhas {
-}
