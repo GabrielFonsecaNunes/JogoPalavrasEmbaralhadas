@@ -1,5 +1,3 @@
-package embaralhar;
-
 public class EmbaralhadorSimples implements Embaralhador {
 
 	public EmbaralhadorSimples(String palavra) {
@@ -17,4 +15,3 @@ public class EmbaralhadorSimples implements Embaralhador {
 		return	palavraEmbaralhada.toUpperCase();
 	}
 }
- 
