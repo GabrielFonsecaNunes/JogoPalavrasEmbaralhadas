@@ -1,5 +1,5 @@
 package embaralhar;
 
-public interface Embaralhador {
-
+public interface Embaralhador{
+	public String embaralhar(String palavra);
 }
