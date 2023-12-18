@@ -1,7 +1,9 @@
+package embaralhar;
+
 public class EmbaralhadorSimples implements Embaralhador {
 
-	public EmbaralhadorSimples(String palavra) {
-	}
+	public EmbaralhadorSimples() {
+	} 
 
 	@Override
 	public String embaralhar(String palavra) {

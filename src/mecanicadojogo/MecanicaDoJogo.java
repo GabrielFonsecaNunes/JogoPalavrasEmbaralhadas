@@ -1,5 +1,8 @@
 package mecanicadojogo;
 
+import jogador.Player;
+
 public interface MecanicaDoJogo {
-	void startGame();
+	public Boolean gameOver(Player jogador);
+	public Boolean acertouPalavra(Player jogador);
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class EmbaralhadorRandom implements Embaralhador{
-	public EmbaralhadorRandom(String palavra) {
+	public EmbaralhadorRandom() {
 	}
 	
 	@Override

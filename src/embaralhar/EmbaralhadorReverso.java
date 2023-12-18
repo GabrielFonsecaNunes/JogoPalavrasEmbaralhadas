@@ -2,7 +2,7 @@ package embaralhar;
 
 public class EmbaralhadorReverso implements Embaralhador{
 	
-	public EmbaralhadorReverso(String palavra) {
+	public EmbaralhadorReverso() {
 	}
 	
 	@Override

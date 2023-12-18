@@ -1,5 +1,12 @@
 package fabricamecanicadojogo;
 
-public class FabricaMecanicaDoJogo {
+import mecanicadojogo.MecanicaDoJogoSimples;
 
+public class FabricaMecanicaDoJogo {
+	public FabricaMecanicaDoJogo() {
+	}
+
+	public MecanicaDoJogoSimples getEngine() {
+		return new MecanicaDoJogoSimples();
+	}
 }
