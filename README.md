@@ -1,1 +1,59 @@
-# JogoPalavrasEmbaralhas
+# Jogo de Palavras Embaralhadas
+
+Este é um jogo simples de palavras embaralhadas desenvolvido em Java. O jogo inclui um banco de palavras, diferentes estratégias de embaralhamento, uma mecânica de jogo simples e a capacidade de acompanhar o histórico dos jogadores.
+
+## Estrutura do Projeto
+
+### `BancoDePalavras.java`
+
+Esta classe é responsável pela manipulação do banco de palavras. Ela cria uma tabela no banco de dados SQLite para armazenar as palavras, insere as palavras no banco e fornece uma função para obter uma palavra aleatória do banco.
+
+### `SQLiteConnection.java`
+
+Esta classe estabelece a conexão com o banco de dados SQLite. Ela contém métodos para conectar e desconectar do banco, além de executar consultas SQL.
+
+### `Embaralhador.java`
+
+Interface que define o contrato para as classes de embaralhamento.
+
+### `EmbaralhadorRandom.java`, `EmbaralhadorReverso.java`, `EmbaralhadorSimples.java`
+
+Implementações específicas da interface `Embaralhador`. Cada classe representa uma estratégia diferente para embaralhar as palavras.
+
+### `FabricaEmbaralhadores.java`
+
+Esta fábrica cria instâncias de embaralhadores de forma aleatória.
+
+### `FabricaMecanicaDoJogo.java`
+
+Fábrica que fornece uma instância da mecânica do jogo.
+
+### `MecanicaDoJogo.java`, `MecanicaDoJogoSimples.java`
+
+Interface e implementação da mecânica do jogo. A mecânica inclui a lógica para determinar se o jogo acabou e se o jogador acertou ou errou a palavra.
+
+### `Player.java`
+
+Classe que representa um jogador. Armazena o nome do jogador, pontuação e corações (vidas). Também fornece métodos para aumentar a pontuação e manipular as vidas do jogador.
+
+### `Principal.java`
+
+A classe principal que inicia o jogo. Ela apresenta um menu ao usuário, permite a criação de um jogador e controla o fluxo do jogo, exibindo a interface do usuário e interagindo com as classes relacionadas ao jogo.
+
+## Como Jogar
+
+1. Execute a classe `Principal.java`.
+2. Escolha a opção "Novo Jogo".
+3. Digite um nome para o jogador.
+4. O jogo começará, exibindo a palavra embaralhada e a interface do jogador.
+5. Digite a palavra desembaralhada.
+6. O jogo continuará até que o jogador acerte a palavra ou perca todas as vidas.
+7. O jogo mostrará a pontuação final e a opção de reiniciar ou sair.
+
+## Notas Adicionais
+
+- As palavras estão armazenadas em um banco de dados SQLite.
+- As estratégias de embaralhamento incluem embaralhamento aleatório, reverso e simples (troca de metades).
+- O jogo mantém um histórico simples dos jogadores.
+
+Divirta-se jogando palavras embaralhadas!

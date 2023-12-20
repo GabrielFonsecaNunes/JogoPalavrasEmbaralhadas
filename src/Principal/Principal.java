@@ -59,17 +59,19 @@ public class Principal {
         	MecanicaDoJogoSimples engine = factory.getEngine();
         	
         	printChooseNamePlayer();
-        	Player jogador = new Player(sc.next().strip());
+        	Player jogador = new Player();
+        	jogador.setName(sc.next().strip());
         	System.out.println(jogador.toString());
+        	
         	while(engine.gameOver(jogador) == false) {
-        		engine.getPalavraBanco();
+        		String palavra = engine.getPalavraBanco();
         		mainScreen(engine.getPalavraEmbaralhada(), jogador);
         		jogador.setResposta(sc.next().strip());
         		engine.acertouPalavra(jogador);
+        		System.out.println(String.format("Palavra Correta %s", palavra));
         	}
         	System.out.println(String.format("Score: %d", jogador.getScore()));
-        	System.out.println(String.format("GameOver %s!\n", jogador.getName()));
-        	
+        	System.out.println(String.format("GameOver: %s!\n", jogador.getName()));
         	System.out.println("");
         	startGame();
         }
