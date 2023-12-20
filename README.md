@@ -4,45 +4,45 @@ Este é um jogo simples de palavras embaralhadas desenvolvido em Java. O jogo in
 
 ## Estrutura do Projeto
 
-### `BancoDePalavras.java`
+### `BancoDePalavras`
 
 Esta classe é responsável pela manipulação do banco de palavras. Ela cria uma tabela no banco de dados SQLite para armazenar as palavras, insere as palavras no banco e fornece uma função para obter uma palavra aleatória do banco.
 
-### `SQLiteConnection.java`
+### `SQLiteConnection`
 
 Esta classe estabelece a conexão com o banco de dados SQLite. Ela contém métodos para conectar e desconectar do banco, além de executar consultas SQL.
 
-### `Embaralhador.java`
+### `Embaralhador`
 
 Interface que define o contrato para as classes de embaralhamento.
 
-### `EmbaralhadorRandom.java`, `EmbaralhadorReverso.java`, `EmbaralhadorSimples.java`
+### `EmbaralhadorRandom`, `EmbaralhadorReverso`, `EmbaralhadorSimples`
 
 Implementações específicas da interface `Embaralhador`. Cada classe representa uma estratégia diferente para embaralhar as palavras.
 
-### `FabricaEmbaralhadores.java`
+### `FabricaEmbaralhadores`
 
 Esta fábrica cria instâncias de embaralhadores de forma aleatória.
 
-### `FabricaMecanicaDoJogo.java`
+### `FabricaMecanicaDoJogo`
 
 Fábrica que fornece uma instância da mecânica do jogo.
 
-### `MecanicaDoJogo.java`, `MecanicaDoJogoSimples.java`
+### `MecanicaDoJogo`, `MecanicaDoJogoSimples`
 
 Interface e implementação da mecânica do jogo. A mecânica inclui a lógica para determinar se o jogo acabou e se o jogador acertou ou errou a palavra.
 
-### `Player.java`
+### `Player`
 
 Classe que representa um jogador. Armazena o nome do jogador, pontuação e corações (vidas). Também fornece métodos para aumentar a pontuação e manipular as vidas do jogador.
 
-### `Principal.java`
+### `Principal`
 
 A classe principal que inicia o jogo. Ela apresenta um menu ao usuário, permite a criação de um jogador e controla o fluxo do jogo, exibindo a interface do usuário e interagindo com as classes relacionadas ao jogo.
 
 ## Como Jogar
 
-1. Execute a classe `Principal.java`.
+1. Execute a classe `Principal`.
 2. Escolha a opção "Novo Jogo".
 3. Digite um nome para o jogador.
 4. O jogo começará, exibindo a palavra embaralhada e a interface do jogador.
