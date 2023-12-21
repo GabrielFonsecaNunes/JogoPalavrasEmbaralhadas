@@ -72,13 +72,15 @@ public class Principal {
             );
             indexRanking++;
         }
-        System.out.println("+------------------------+");
+        System.out.println("+---------+----------+-----------+");
+        System.out.println();
+        System.out.println("▒▒ Quer Limpar o Ranking Sim/Nao ?▒▒▒");
     }
 
     public static void gameOver(Player jogador) {
         System.out.println("▓▓▓▓▓▓▓▓▓   GAME OVER   ▓▓▓▓▓▓▓▓▓");
-        System.out.println(String.format("█ Jogador: %-10s  █", jogador.getName()));
-        System.out.println(String.format("█ Score:   %-10d  █", jogador.getScore()));
+        System.out.println(String.format("█ Jogador: %-10s         █", jogador.getName()));
+        System.out.println(String.format("█ Score:   %-10d         █", jogador.getScore()));
         System.out.println("█                               █");
         System.out.println("█          Have Happy Day!      █");
         System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
@@ -95,6 +97,13 @@ public class Principal {
         ArrayList<Player> jogadores = historico.getTopRanking();
         if (!jogadores.isEmpty()) {
             printHistoricRanking(jogadores);
+            String optionClearRanking = sc.nextLine().strip().toLowerCase();
+            if(optionClearRanking.contains("s")) {
+            	RankingJogador ranking = new RankingJogador();
+            	ranking.clearRanking();
+            }
+            
+            startGame();
         } else {
             System.out.println("<Não há nenhum ranking de jogadores>\n");
             startGame();
@@ -110,11 +119,10 @@ public class Principal {
 
             boolean acertou = engine.acertouPalavra(jogador);
             System.out.println("| Palavra Desembaralhada: " + engine.getLastPalavra());
-            System.out.println(acertou ? "Acertou :)" : "Errou :(");
+            System.out.println(acertou ? "Acertou :) +10 Score" : "Errou :( -1 Coração");
         }
 
-        System.out.println("**********************\n");
-        System.out.println("Score: " + jogador.getScore());
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n");
         gameOver(jogador);
     }
     
@@ -140,7 +148,6 @@ public class Principal {
     public static void startGame() {
         printMenu();
         String option = sc.nextLine().strip();
-        sc.nextLine();
 
         if (option.strip().contains("1")) {
             startNewGame();

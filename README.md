@@ -1,5 +1,7 @@
 # Jogo de Palavras Embaralhadas
 
+![Texto Alternativo]('./img/menu.png')
+
 Este é um jogo simples de palavras embaralhadas desenvolvido em Java. O jogo inclui um banco de palavras, diferentes estratégias de embaralhamento, uma mecânica de jogo simples e a capacidade de acompanhar o histórico dos jogadores.
 
 ## Estrutura do Projeto
