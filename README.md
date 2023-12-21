@@ -50,7 +50,7 @@ A classe principal que inicia o jogo. Ela apresenta um menu ao usuário, permite
 6. O jogo continuará até que o jogador acerte a palavra ou perca todas as vidas.
 7. O jogo mostrará a pontuação final e a opção de reiniciar ou sair.
 
-![""](./img/menu.png)
+!["menu"](./img/menu.png)
 
 ## Notas Adicionais
 
