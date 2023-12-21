@@ -6,9 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,7 +49,23 @@ public class BancoDePalavras {
                 statement.setString(1, palavra);
                 statement.executeUpdate();
             }
+            System.out.println("Palavras inseridas com sucesso!");
 
+        } catch (SQLException e) {
+            Logger.getLogger(BancoDePalavras.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    public void dropTbPalavras(){
+        String query = "DROP TABLE tb_palavras";
+
+        try (Connection connection = SQLiteConnection.conectar();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            for (String palavra : palavras) {
+                statement.setString(1, palavra);
+                statement.executeUpdate();
+            }
             System.out.println("Palavras inseridas com sucesso!");
 
         } catch (SQLException e) {
@@ -74,6 +87,13 @@ public class BancoDePalavras {
         }
 
         return null;
+    }
+
+    public static void main(String[] args) {
+        BancoDePalavras banco = new BancoDePalavras();
+        // banco.dropTbPalavras();
+        banco.createTbPalavras();
+        // banco.inserirTodasPalavras();
     }
 }
 

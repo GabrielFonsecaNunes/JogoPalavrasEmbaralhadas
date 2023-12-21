@@ -2,88 +2,156 @@ package Principal;
 
 import fabricamecanicadojogo.FabricaMecanicaDoJogo;
 import mecanicadojogo.MecanicaDoJogoSimples;
-import bancodepalavras.BancoDePalavras;
+import rankingjogador.RankingJogador;
 import jogador.Player;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
-	
+
+    private static Scanner sc = new Scanner(System.in);
+    private static RankingJogador historico = new RankingJogador();
+
+    public Principal() {
+    }
+
     public static void main(String[] args) {
-    	startGame();
+        Principal.run();
+    }
+
+    public static void run() {
+        startGame();
+    }
+
+    public static void printMenu() {
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓ Jogo Palavras Embaralhadas ▓▓▓▓▓▓");
+        System.out.println("█ Selecione uma opção:                      █");
+        System.out.println("█ 1. Novo Jogo                              █");
+        System.out.println("█ 2. Ranking Jogadores                      █");
+        System.out.println("█ 3. Sair                                   █");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+    }
+
+    public static void printChooseNamePlayer() {
+        System.out.println("▓▓▓▓▓▓▓▓▓▓ Escolha um nome: ▓▓▓▓▓▓▓▓▓▓");
+    }
+
+    public static void mainScreen(String palavraEmbaralhada, Player jogador) {
+        System.out.println("+------------------------+");
+        System.out.println("|      GAME SCREEN       |");
+        System.out.println("+------------------------+");
+        System.out.println("| Corações: " + jogador.getHearts() + "  Score: " + jogador.getScore() + "  |");
+        System.out.println("|------------------------|");
+        System.out.printf("| Embaralhada: %-3s ?        |\n", palavraEmbaralhada);
+        System.out.println("|                        |");
+        for (int i = 0; i < 1; i++) {
+            System.out.println("|                        |");
+        }
+        System.out.print("| Desemparalhada ? |");
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("|                        |");
+        }
+        System.out.println("+------------------------+");
+    }
+
+    public static void printHistoricRanking(ArrayList<Player> ranking) {
+        System.out.println("+--------------------------------+");
+        System.out.println("|      TOP 5 JOGADORES           |");
+        System.out.println("+--------------------------------+");
+        System.out.println("| CLASSIF |   NOME   | PONTUACAO |");
+        System.out.println("+---------+----------+-----------+");
+
+        int indexRanking = 1;
+        for (Player jogador : ranking) {
+            System.out.println(String.format("|    #%d   | %-8s |    %d     |",
+                    indexRanking,
+                    jogador.getName(),
+                    jogador.getScore())
+            );
+            indexRanking++;
+        }
+        System.out.println("+------------------------+");
+    }
+
+    public static void gameOver(Player jogador) {
+        System.out.println("▓▓▓▓▓▓▓▓▓   GAME OVER   ▓▓▓▓▓▓▓▓▓");
+        System.out.println(String.format("█ Jogador: %-10s  █", jogador.getName()));
+        System.out.println(String.format("█ Score:   %-10d  █", jogador.getScore()));
+        System.out.println("█                               █");
+        System.out.println("█          Have Happy Day!      █");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println();
+        sc.nextLine();
+    }
+
+    public static void displayStartNewGame(){
+        System.out.println("▒▒▒▒▒▒▒▒▒▒ Iniciando... ▒▒▒▒▒▒▒▒▒▒");
+    }
+
+    private static void displayRanking() {
+        System.out.println("▒▒▒▒▒▒▒▒▒▒ Ranking Jogadores ▒▒▒▒▒▒▒▒▒▒");
+        ArrayList<Player> jogadores = historico.getTopRanking();
+        if (!jogadores.isEmpty()) {
+            printHistoricRanking(jogadores);
+        } else {
+            System.out.println("<Não há nenhum ranking de jogadores>\n");
+            startGame();
+        }
+    }
+
+    private static void playGame(MecanicaDoJogoSimples engine, Player jogador) {
+        while (!engine.gameOver(jogador)) {
+            engine.getPalavraBanco();
+            mainScreen(engine.getPalavraEmbaralhada(), jogador);
+            String resposta = sc.next().strip();
+            jogador.setResposta(resposta);
+
+            boolean acertou = engine.acertouPalavra(jogador);
+            System.out.println("| Palavra Desembaralhada: " + engine.getLastPalavra());
+            System.out.println(acertou ? "Acertou :)" : "Errou :(");
+        }
+
+        System.out.println("**********************\n");
+        System.out.println("Score: " + jogador.getScore());
+        gameOver(jogador);
     }
     
-    public static void printMenu() {
-		System.out.println("** Jogo Palavras Embaralhadas **");
-        System.out.println("Selecione uma opção: ");
-        System.out.println("1. Novo Jogo");
-        System.out.println("2. Ranking Jogadores");
-        System.out.println("3. Sair");
-	}
-    
-    public static void printMenuContinuar() {
-        System.out.println("Selecione uma opção: ");
-        System.out.println("1. Novo Jogo");
-        System.out.println("2. Sair");
-	}
-    
-    public static void printChooseNamePlayer() {
-        System.out.println("Escolha um nome: ");
-	}
-	
-	public static void mainScreen(String palavraEmbaralhada, Player jogador) {
-		String row = String.format("Corações: %d 	Score: %d\n", jogador.getHearts(), jogador.getScore());
-		System.out.println(row);
-		System.out.printf("Palavra: %s ?\n", palavraEmbaralhada);
-		System.out.println("              ");
-		for(int i = 0; i < 3; i++) {			
-			System.out.println("");
-		}
-		System.out.print("Palavra desemparalhada: ");
-		
-		for(int i = 0; i < 3; i++) {			
-			System.out.println("");
-		}
-	}
-	
-	public static void startGame() {
-		// Entrada de dados
-		Scanner sc = new Scanner(System.in);
+    private static void startNewGame() {
+        FabricaMecanicaDoJogo factory = new FabricaMecanicaDoJogo();
+        MecanicaDoJogoSimples engine = factory.getEngine();
+        displayStartNewGame();
+        printChooseNamePlayer();
+        Player jogador = new Player();
+        jogador.setName(sc.nextLine().strip());
+        playGame(engine, jogador);
+        RankingJogador ranking = new RankingJogador();
+        ranking.addJogador(jogador);
+        ranking.insertPlayerRakingHistoric();
+        startGame();
+    }
+
+    private static void exitGame() {
+        sc.close();
+        System.exit(0);
+    }
+
+    public static void startGame() {
         printMenu();
-        
         String option = sc.nextLine().strip();
-        
-        if(option.strip().contains("1")) {
-        	System.out.println("Iniciando...");
-        	FabricaMecanicaDoJogo factory = new FabricaMecanicaDoJogo();
-        	MecanicaDoJogoSimples engine = factory.getEngine();
-        	
-        	printChooseNamePlayer();
-        	Player jogador = new Player();
-        	jogador.setName(sc.next().strip());
-        	System.out.println(jogador.toString());
-        	
-        	while(engine.gameOver(jogador) == false) {
-        		String palavra = engine.getPalavraBanco();
-        		mainScreen(engine.getPalavraEmbaralhada(), jogador);
-        		jogador.setResposta(sc.next().strip());
-        		engine.acertouPalavra(jogador);
-        		System.out.println(String.format("Palavra Correta %s", palavra));
-        	}
-        	System.out.println(String.format("Score: %d", jogador.getScore()));
-        	System.out.println(String.format("GameOver: %s!\n", jogador.getName()));
-        	System.out.println("");
-        	startGame();
+        sc.nextLine();
+
+        if (option.strip().contains("1")) {
+            startNewGame();
         }
         else if (option.strip().contains("2")) {
-			System.out.println("Historico Ranking Jogadores");
-		}
+            displayRanking();
+        }
         else if (option.strip().contains("3")) {
-        	sc.close();
-        	System.exit(0);
-        }
-        else {
-        	startGame();
-        }
-	}
+            exitGame();
+        } else {
+            startGame();
+        } 
+    }        
 }

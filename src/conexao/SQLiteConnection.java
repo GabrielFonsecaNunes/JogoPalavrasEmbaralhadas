@@ -2,10 +2,9 @@ package conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import bancodepalavras.BancoDePalavras;
 
 public class SQLiteConnection {
 
@@ -36,11 +35,11 @@ public class SQLiteConnection {
             }
         }
     }
-    public static void executeQuery(String query) throws SQLException {
+    public static ResultSet executeQuery(String query) throws SQLException {
 		Connection conexao = conectar();
 		Statement statement = conexao.createStatement();
 		statement.execute(query);
-		conexao.commit();
-		desconectar(conexao);
+		ResultSet resultSet = statement.getResultSet();
+		return resultSet;
 	}
 }

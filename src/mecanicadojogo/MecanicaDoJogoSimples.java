@@ -1,7 +1,7 @@
 package mecanicadojogo;
+import java.util.ArrayList;
 
 import bancodepalavras.BancoDePalavras;
-import embaralhar.Embaralhador;
 import embaralhar.EmbaralhadorSimples;
 import jogador.Player;
 
@@ -10,11 +10,11 @@ public class MecanicaDoJogoSimples implements MecanicaDoJogo {
 	private BancoDePalavras banco;
 	private EmbaralhadorSimples embaralhador;
 	private String palavra;
+	private ArrayList<String> palavras = new ArrayList<String>();
 	
-	public MecanicaDoJogoSimples() {
+	public MecanicaDoJogoSimples(){
 		this.banco = this.getBanco();
 		this.embaralhador = this.getEmbaralhador();
-		this.palavra = this.getPalavraBanco();
 	}
 		
 	public BancoDePalavras getBanco() {
@@ -25,12 +25,23 @@ public class MecanicaDoJogoSimples implements MecanicaDoJogo {
 		return new EmbaralhadorSimples();
 	}
 	
+	public String getLastPalavra() {
+		int index = palavras.size() - 1;
+		return this.palavras.get(index);
+	}
+	
 	public String getPalavraBanco() {
-		return this.banco.getPalavraAleatoria();
+		this.palavra = this.banco.getPalavraAleatoria();
+		this.palavras.add(this.palavra);
+		return this.palavra;
 	}
 	
 	public String getPalavraEmbaralhada() {
 		return this.embaralhador.embaralhar(this.palavra);
+	}
+	
+	public ArrayList<String> getPalavras() {
+		return palavras;
 	}
 	
 	@Override
@@ -40,8 +51,6 @@ public class MecanicaDoJogoSimples implements MecanicaDoJogo {
 			jogador.inscreaseScore();
 		else
 			jogador.descreaseHearts();
-		
-		this.palavra = this.getPalavraBanco();
 		return flag;
 	}
 	
