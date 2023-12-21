@@ -1,8 +1,6 @@
 # Jogo de Palavras Embaralhadas
 
-![Texto Alternativo]('./img/menu.png')
-
-Este é um jogo simples de palavras embaralhadas desenvolvido em Java. O jogo inclui um banco de palavras, diferentes estratégias de embaralhamento, uma mecânica de jogo simples e a capacidade de acompanhar o histórico dos jogadores.
+Este é um jogo simples de palavras embaralhadas desenvolvido em Java. O jogo inclui um banco de palavras, diferentes estratégias de embaralhamento, uma mecânica de jogo simples e a capacidade de acompanhar o ranking dos jogadores.
 
 ## Estrutura do Projeto
 
@@ -30,9 +28,9 @@ Esta fábrica cria instâncias de embaralhadores de forma aleatória.
 
 Fábrica que fornece uma instância da mecânica do jogo.
 
-### `MecanicaDoJogo`, `MecanicaDoJogoSimples`
+### `MecanicaDoJogo`, `MecanicaDoJogoSimples`, `MecanicaDoJogoDinamica`
 
-Interface e implementação da mecânica do jogo. A mecânica inclui a lógica para determinar se o jogo acabou e se o jogador acertou ou errou a palavra.
+Interface e implementação da mecânica do jogo. A mecânica inclui a lógica para determinar se o jogo acabou e se o jogador acertou ou errou a palavra. MecanicaDoJogoDinamica utiliza implementações de vários embaralhadores (EmbaralhadorRandom ou EmbaralhadorReverso ou EmbaralhadorSimples) de forma aleatoria.
 
 ### `Player`
 
@@ -51,6 +49,8 @@ A classe principal que inicia o jogo. Ela apresenta um menu ao usuário, permite
 5. Digite a palavra desembaralhada.
 6. O jogo continuará até que o jogador acerte a palavra ou perca todas as vidas.
 7. O jogo mostrará a pontuação final e a opção de reiniciar ou sair.
+
+![""](./img/menu.png)
 
 ## Notas Adicionais
 

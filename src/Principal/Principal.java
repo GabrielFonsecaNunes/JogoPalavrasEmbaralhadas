@@ -1,6 +1,7 @@
 package Principal;
 
 import fabricamecanicadojogo.FabricaMecanicaDoJogo;
+import mecanicadojogo.MecanicaDoJogoDinamica;
 import mecanicadojogo.MecanicaDoJogoSimples;
 import rankingjogador.RankingJogador;
 import jogador.Player;
@@ -110,7 +111,7 @@ public class Principal {
         }
     }
 
-    private static void playGame(MecanicaDoJogoSimples engine, Player jogador) {
+    private static void playGame(MecanicaDoJogoDinamica engine, Player jogador) {
         while (!engine.gameOver(jogador)) {
             engine.getPalavraBanco();
             mainScreen(engine.getPalavraEmbaralhada(), jogador);
@@ -128,7 +129,7 @@ public class Principal {
     
     private static void startNewGame() {
         FabricaMecanicaDoJogo factory = new FabricaMecanicaDoJogo();
-        MecanicaDoJogoSimples engine = factory.getEngine();
+        MecanicaDoJogoDinamica engine = factory.getDinamicEngine();
         displayStartNewGame();
         printChooseNamePlayer();
         Player jogador = new Player();
