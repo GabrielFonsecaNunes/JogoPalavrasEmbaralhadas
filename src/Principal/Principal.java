@@ -49,7 +49,7 @@ public class Principal {
         for (int i = 0; i < 1; i++) {
             System.out.println("|                        |");
         }
-        System.out.print("| Desemparalhada ? |");
+        System.out.print("| Desembaralhada ? |");
 
         for (int i = 0; i < 3; i++) {
             System.out.println("|                        |");
